@@ -1,0 +1,68 @@
+@CHARSET "UTF-8";
+
+body, div, p, span, input, select, textarea, td, th, li, b, file, a {
+	font-size: 12px;
+	color: #333333;
+	font-family: "나눔고딕", "고딕체", "고딕"
+}
+
+body{
+	background-color: #e8e8e8;
+}
+
+#wrapper{
+	width: 280px;
+	margin: 0 auto;
+}
+
+input {
+	padding: 5px;
+	margin: 5px;
+}
+
+input[type=text] {
+	width: 250px;
+}
+
+input[type=password] {
+	width: 250px;
+}
+
+.inline {
+	display: inline-block;
+}
+
+input {
+	padding: 5px;
+	padding: 10px;
+	border-radius: 7px;
+	border: 1px solid #BBBBBB;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.clear {
+	clear: both;
+}
+
+.warning {
+	background-color: #FFB7DB;
+}
+
+.pass {
+	background-color: #A0FEAC;
+	
+}
+
+textarea {
+	width: 100%;
+	margin-top: 5px;
+	height: 300px;
+	border-radius: 7px;
+}
