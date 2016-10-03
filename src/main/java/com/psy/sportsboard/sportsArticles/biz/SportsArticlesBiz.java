@@ -14,4 +14,6 @@ public interface SportsArticlesBiz {
 
 	public boolean delete(String articleId);
 
+	public boolean updateRecommend(String articleId);
+
 }

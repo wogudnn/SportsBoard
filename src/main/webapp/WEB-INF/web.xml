@@ -127,4 +127,14 @@
     <servlet-name>DodeleteServlet</servlet-name>
     <url-pattern>/board/doDelete</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DoRecommendServlet</display-name>
+    <servlet-name>DoRecommendServlet</servlet-name>
+    <servlet-class>com.psy.sportsboard.sportsArticles.web.DoRecommendServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoRecommendServlet</servlet-name>
+    <url-pattern>/board/doRecommend</url-pattern>
+  </servlet-mapping>
 </web-app>

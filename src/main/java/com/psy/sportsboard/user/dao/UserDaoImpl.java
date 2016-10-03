@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.psy.sportsboard.sportsArticles.vo.SportsArticlesVO;
 import com.psy.sportsboard.support.DaoSupport;
 import com.psy.sportsboard.support.Query;
 import com.psy.sportsboard.support.QueryAndResult;
@@ -107,6 +108,26 @@ public class UserDaoImpl extends DaoSupport implements UserDao {
 				}
 				
 				return userVO;
+			}
+		});
+	}
+	
+	@Override
+	public int updatePoint(SportsArticlesVO articlesVO) {
+
+		return insert(new Query() {
+			
+			@Override
+			public PreparedStatement query(Connection conn) throws SQLException {
+				StringBuffer query = new StringBuffer();
+				query.append(" UPDATE	USR  ");
+				query.append(" SET		POINT = POINT + 10  ");
+				query.append(" WHERE	USR_ID = ?  ");
+				
+				PreparedStatement pstmt = conn.prepareStatement(query.toString());
+				pstmt.setString(1, articlesVO.getUserId());
+				
+				return pstmt;
 			}
 		});
 	}

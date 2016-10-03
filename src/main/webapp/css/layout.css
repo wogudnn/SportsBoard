@@ -10,8 +10,9 @@ body{
 	background-color: #e8e8e8;
 }
 
+
 #wrapper{
-	width: 280px;
+	width: 100%;
 	margin: 0 auto;
 }
 
@@ -65,4 +66,14 @@ textarea {
 	margin-top: 5px;
 	height: 300px;
 	border-radius: 7px;
+	
+}
+
+#signInForm{
+	width: 280px;
+	margin: 0 auto;
+}
+#signUpForm{
+	width: 280px;
+	margin: 0 auto;
 }

@@ -25,7 +25,7 @@ public class SportsArticlesDaoImpl extends DaoSupport implements SportsArticlesD
 				StringBuffer query = new StringBuffer();
 				query.append(" SELECT	S.SPRT_ATCL_ID, ");
 				query.append(" S.SPRT_ATCL_SBJ, S.SPRT_ATCL_CNNT, TO_CHAR(S.CRT_DT, 'YYYY-MM-DD') CRT_DT, ");
-				query.append(" S.HIT_CNT, S.RCMD_CNT, S.USR_ID, S.FILE_NM, U.USR_NM ");
+				query.append(" S.HIT_CNT, S.RCMD_CNT, S.USR_ID, S.FILE_NM, U.USR_NM, U.POINT ");
 				query.append(" FROM		SPRT_ATCL S, USR U");
 				query.append(" WHERE	U.USR_ID = S.USR_ID ");
 				
@@ -53,6 +53,7 @@ public class SportsArticlesDaoImpl extends DaoSupport implements SportsArticlesD
 					articlesVO.setFileName(rs.getString("FILE_NM"));
 					userVO = articlesVO.getUserVO();
 					userVO.setNickName(rs.getString("USR_NM"));
+					userVO.setPoint(rs.getInt("POINT"));
 					
 					articles.add(articlesVO);
 				}
@@ -94,7 +95,7 @@ public class SportsArticlesDaoImpl extends DaoSupport implements SportsArticlesD
 				StringBuffer query = new StringBuffer();
 				query.append(" SELECT	S.SPRT_ATCL_ID, ");
 				query.append(" S.SPRT_ATCL_SBJ, S.SPRT_ATCL_CNNT, TO_CHAR(S.CRT_DT, 'YYYY-MM-DD') CRT_DT, ");
-				query.append(" S.HIT_CNT, S.RCMD_CNT, S.USR_ID, S.FILE_NM, U.USR_NM ");
+				query.append(" S.HIT_CNT, S.RCMD_CNT, S.USR_ID, S.FILE_NM, U.USR_NM, U.POINT ");
 				query.append(" FROM		SPRT_ATCL S, USR U");
 				query.append(" WHERE	U.USR_ID = S.USR_ID ");
 				query.append(" AND		S.SPRT_ATCL_ID = ? ");
@@ -122,6 +123,7 @@ public class SportsArticlesDaoImpl extends DaoSupport implements SportsArticlesD
 					articlesVO.setFileName(rs.getString("FILE_NM"));
 					userVO = articlesVO.getUserVO();
 					userVO.setNickName(rs.getString("USR_NM"));
+					userVO.setPoint(rs.getInt("POINT"));
 					
 				}
 				return articlesVO;
@@ -143,6 +145,48 @@ public class SportsArticlesDaoImpl extends DaoSupport implements SportsArticlesD
 				PreparedStatement pstmt = conn.prepareStatement(query.toString());
 				pstmt.setString(1, articleId);
 				return pstmt;
+			}
+		});
+	}
+	
+	@Override
+	public int updateHitCount(String articleId) {
+		
+		return insert(new Query() {
+			
+			@Override
+			public PreparedStatement query(Connection conn) throws SQLException {
+				StringBuffer query = new StringBuffer();
+				query.append(" UPDATE SPRT_ATCL ");
+				query.append(" SET HIT_CNT = HIT_CNT + 1 ");
+				query.append(" WHERE SPRT_ATCL_ID = ? ");
+				
+				PreparedStatement pstmt = conn.prepareStatement(query.toString());
+				pstmt.setString(1, articleId);
+				
+				return pstmt;
+			}
+		});
+	}
+	
+	@Override
+	public int updateRecommend(String articleId) {
+		
+		return insert(new Query() {
+			
+			@Override
+			public PreparedStatement query(Connection conn) throws SQLException {
+				StringBuffer query = new StringBuffer();
+				query.append(" UPDATE SPRT_ATCL ");
+				query.append(" SET RCMD_CNT = RCMD_CNT + 1, ");
+				query.append(" 		HIT_CNT = HIT_CNT - 1 ");
+				query.append(" WHERE SPRT_ATCL_ID = ? ");
+				
+				PreparedStatement pstmt = conn.prepareStatement(query.toString());
+				pstmt.setString(1, articleId);
+				
+				return pstmt;
+				
 			}
 		});
 	}

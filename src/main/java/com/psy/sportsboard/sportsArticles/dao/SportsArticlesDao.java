@@ -13,5 +13,9 @@ public interface SportsArticlesDao {
 	public SportsArticlesVO getArticleBy(String articleId);
 
 	public int delete(String articleId);
+	
+	public int updateHitCount(String articleId);
+
+	public int updateRecommend(String articleId);
 
 }
