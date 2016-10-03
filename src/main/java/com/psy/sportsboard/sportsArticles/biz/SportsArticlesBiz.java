@@ -16,4 +16,6 @@ public interface SportsArticlesBiz {
 
 	public boolean updateRecommend(String articleId);
 
+	public boolean modifyArticle(SportsArticlesVO articlesVO);
+
 }

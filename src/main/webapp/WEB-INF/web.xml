@@ -137,4 +137,24 @@
     <servlet-name>DoRecommendServlet</servlet-name>
     <url-pattern>/board/doRecommend</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewModifyServlet</display-name>
+    <servlet-name>ViewModifyServlet</servlet-name>
+    <servlet-class>com.psy.sportsboard.sportsArticles.web.ViewModifyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewModifyServlet</servlet-name>
+    <url-pattern>/board/modify</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DoModifySevlet</display-name>
+    <servlet-name>DoModifySevlet</servlet-name>
+    <servlet-class>com.psy.sportsboard.sportsArticles.web.DoModifySevlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoModifySevlet</servlet-name>
+    <url-pattern>/board/doModify</url-pattern>
+  </servlet-mapping>
 </web-app>

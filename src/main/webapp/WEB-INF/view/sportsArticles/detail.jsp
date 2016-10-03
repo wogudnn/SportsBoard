@@ -24,6 +24,14 @@
 			
 		});
 		
+		$("#modifyBtn").click(function(){
+			if(confirm("\"${articlesVO.sportsArticleSubject}\"를 수정하시겠습니까?")) {
+				
+				location.href="/SportsBoard/board/modify?articleId=${articlesVO.sportsArticleId}"
+			}
+			
+		});
+		
 		
 	});
 </script>
@@ -45,12 +53,16 @@
 				${articlesVO.sportsArticleContent}
 			</div>
 		</div>
-		<div id="articleFooter" class="right">
-			<a href="javascript:void(0);" id="recommendBtn">추천</a>
-			<a href="javascript:void(0);" id="deleteBtn">삭제</a>
-			<a href="/SportsBoard/board/list">목록보기</a>
+		<div id="articleFooter">
+			<div class="right">
+				<a href="javascript:void(0);" id="modifyBtn">수정</a>
+				<a href="javascript:void(0);" id="recommendBtn">추천</a>
+				<a href="javascript:void(0);" id="deleteBtn">삭제</a>
+				<a href="/SportsBoard/board/list">목록보기</a>
+			</div>
+			<div class="clear"></div>
 		</div>
-		<div class="clear"></div>
+		
 	</div>
 
 </body>

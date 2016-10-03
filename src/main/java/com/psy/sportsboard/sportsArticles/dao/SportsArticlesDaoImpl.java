@@ -28,6 +28,7 @@ public class SportsArticlesDaoImpl extends DaoSupport implements SportsArticlesD
 				query.append(" S.HIT_CNT, S.RCMD_CNT, S.USR_ID, S.FILE_NM, U.USR_NM, U.POINT ");
 				query.append(" FROM		SPRT_ATCL S, USR U");
 				query.append(" WHERE	U.USR_ID = S.USR_ID ");
+				query.append(" ORDER	BY SPRT_ATCL_ID DESC ");
 				
 				PreparedStatement pstmt = conn.prepareStatement(query.toString());
 				
@@ -187,6 +188,33 @@ public class SportsArticlesDaoImpl extends DaoSupport implements SportsArticlesD
 				
 				return pstmt;
 				
+			}
+		});
+	}
+	
+	
+	
+	@Override
+	public int modifyArticle(SportsArticlesVO articlesVO) {
+		
+		return insert(new Query() {
+			
+			@Override
+			public PreparedStatement query(Connection conn) throws SQLException {
+				
+				StringBuffer query = new StringBuffer();
+				query.append(" UPDATE SPRT_ATCL ");
+				query.append(" SET	SPRT_ATCL_SBJ = ?, ");
+				query.append(" 		SPRT_ATCL_CNNT = ?, ");
+				query.append(" 		HIT_CNT = HIT_CNT - 2 ");
+				query.append(" WHERE SPRT_ATCL_ID = ? ");
+				
+				PreparedStatement pstmt = conn.prepareStatement(query.toString());
+				pstmt.setString(1, articlesVO.getSportsArticleSubject() );
+				pstmt.setString(2, articlesVO.getSportsArticleContent() );
+				pstmt.setString(3, articlesVO.getSportsArticleId() );
+				
+				return pstmt;
 			}
 		});
 	}

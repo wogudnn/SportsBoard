@@ -45,4 +45,11 @@ public class SportsArticlesBizImpl implements SportsArticlesBiz {
 		
 		return articlesDao.updateRecommend(articleId) > 0;
 	}
+	
+	@Override
+	public boolean modifyArticle(SportsArticlesVO articlesVO) {
+		
+		return articlesDao.modifyArticle(articlesVO) > 0;
+	}
+	
 }

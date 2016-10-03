@@ -18,4 +18,6 @@ public interface SportsArticlesDao {
 
 	public int updateRecommend(String articleId);
 
+	public int modifyArticle(SportsArticlesVO articlesVO);
+
 }
