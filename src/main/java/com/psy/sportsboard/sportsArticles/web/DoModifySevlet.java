@@ -31,12 +31,23 @@ public class DoModifySevlet extends HttpServlet {
 		String subJect = Param.getStringParam(request, "subJect");
 		String content = Param.getStringParam(request, "content");
 		
+		if(articleId.length()==0){
+			response.sendRedirect("/SportsBoard/board/detail?errorCode=2&&articleId="+articleId);
+		}
+		if(subJect.length()==0){
+			response.sendRedirect("/SportsBoard/board/detail?errorCode=2&&articleId="+articleId);
+		}
+		if(content.length()==0){
+			response.sendRedirect("/SportsBoard/board/detail?errorCode=2&&articleId="+articleId);
+		}
+		
 		SportsArticlesVO articlesVO = new SportsArticlesVO();
 		articlesVO.setSportsArticleId(articleId);
 		articlesVO.setSportsArticleSubject(subJect);
 		articlesVO.setSportsArticleContent(content);
 		
 		boolean isSuccess = articlesBiz.modifyArticle(articlesVO);
+		
 		if(isSuccess){
 			response.sendRedirect("/SportsBoard/board/detail?articleId="+articleId);
 		}

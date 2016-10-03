@@ -26,10 +26,12 @@ public class DodeleteServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String articleId = Param.getStringParam(request, "articleId");
+		
 		if(articleId.length()==0){
 			response.sendRedirect("/SportsBoard/board/detail?errorCode=2");
 			return;
 		}
+		
 		boolean isSuccess = articlesBiz.delete(articleId);
 		if(isSuccess){
 			response.sendRedirect("/SportsBoard/board/list");

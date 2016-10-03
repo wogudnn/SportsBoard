@@ -40,12 +40,16 @@ public class DoWriteServlet extends HttpServlet {
 			response.sendRedirect("/SportsBoard/board/write?errorCode=2");
 			return;
 		}
+		
 		SportsArticlesVO articlesVO = new SportsArticlesVO();
 		articlesVO.setSportsArticleSubject(subJect);
 		articlesVO.setSportsArticleContent(content);
+		
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute(Session.USER_INFO);
+		
 		articlesVO.setUserId(userVO.getUserId());
+		
 		boolean isSuccess = articlesBiz.addArticle(articlesVO);
 		if(isSuccess){
 			response.sendRedirect("/SportsBoard/board/list");

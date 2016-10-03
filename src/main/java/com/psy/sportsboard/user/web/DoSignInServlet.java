@@ -30,6 +30,7 @@ public class DoSignInServlet extends HttpServlet {
 		
 		String email = Param.getStringParam(request, "email");
 		String password = Param.getStringParam(request, "password");
+		
 		if(email.length()==0){
 			response.sendRedirect("/SportsBoard/signIn?errorCode=2");
 		}

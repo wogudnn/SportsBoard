@@ -30,6 +30,11 @@ public class ViewDetailPageServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String viewPath = "/WEB-INF/view/sportsArticles/detail.jsp";
 		String articleId = Param.getStringParam(request, "articleId");
+		
+		if(articleId.length()==0){
+			response.sendRedirect("/SportsBoard/board/list?errorCode=1");
+		}
+		
 		SportsArticlesVO articlesVO = articlesBiz.getArticleBy(articleId);
 		RequestDispatcher rd = request.getRequestDispatcher(viewPath);
 		request.setAttribute("articlesVO", articlesVO);

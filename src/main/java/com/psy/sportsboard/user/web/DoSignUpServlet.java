@@ -31,17 +31,22 @@ public class DoSignUpServlet extends HttpServlet {
 		String email = Param.getStringParam(request, "email");
 		String nickname = Param.getStringParam(request, "nickname");
 		String password = Param.getStringParam(request, "password1");
+		String password2 = Param.getStringParam(request, "password2");
 		
 		if(email.length()==0){
-			response.sendRedirect("/SportsBoard/signUp?errorCode=1");
+			response.sendRedirect("/SportsBoard/signUp?errorCode=2");
 			return;
 		}
 		if(nickname.length()==0){
-			response.sendRedirect("/SportsBoard/signUp?errorCode=1");
+			response.sendRedirect("/SportsBoard/signUp?errorCode=2");
 			return;
 		}
 		if(password.length()==0){
-			response.sendRedirect("/SportsBoard/signUp?errorCode=1");
+			response.sendRedirect("/SportsBoard/signUp?errorCode=2");
+			return;
+		}
+		if(password2.length()==0){
+			response.sendRedirect("/SportsBoard/signUp?errorCode=2");
 			return;
 		}
 		
